@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  outline: none;
+}
+
+body {
+  font-family: "JetBrains Mono", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  transition: background 0.5s ease;
+}
+
+header:has(input#header-menu-cb:checked) {
+  background-color: white;
+}
+
+header div#logo span {
+  font-size: clamp(1.5rem, 1.2000rem + 1.5000vw, 3rem);
+  font-weight: 700;
+}
+
+header nav#header-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+header input {
+  display: none;
+}
+
+/* Header menu burger button */
+header label {
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+header label span {
+  content: "";
+  width: 30px;
+  height: 2px;
+  background-color: black;
+  border-radius: 4px;
+  display: block;
+  transform-origin: center;
+}
+
+header input:not(:checked)+label span:nth-of-type(1) {
+  animation: burgerTopReverse 0.5s ease forwards;
+}
+
+header input:not(:checked)+label span:nth-of-type(2) {
+  transition: width 0.5s ease;
+}
+
+header input:not(:checked)+label span:nth-of-type(3) {
+  animation: burgerBottomReverse 0.5s ease forwards;
+}
+
+header input:checked+label span:nth-of-type(1) {
+  animation: burgerTop 0.5s ease forwards;
+}
+
+header input:checked+label span:nth-of-type(2) {
+  width: 0px;
+  transition: width 0.1s ease 0.1s;
+}
+
+header input:checked+label span:nth-of-type(3) {
+  animation: burgerBottom 0.5s ease forwards;
+}
+
+/* Header menu navigation list */
+header ul {
+  width: 100%;
+  background-color: white;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: calc(2rem + clamp(1.5rem, 1.2000rem + 1.5000vw, 3rem));
+  left: 0;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+  transition: 0.5s ease;
+}
+
+header nav#header-menu input:checked~ul {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+header nav#header-menu ul li {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  transition: 0.5s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+header nav#header-menu ul li:hover,
+header nav#header-menu ul li:active {
+  background-color: black;
+  color: white;
+}
+
+/* Main */
+main {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  position: absolute;
+  transition: 0.5s ease;
+  z-index: -1;
+}
+
+header:has(input#header-menu-cb:checked)~main {
+  filter: brightness(50%);
+}
