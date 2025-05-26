@@ -5,7 +5,7 @@
   }
 
   50% {
-    transform: translateY(10px) rotate(0);
+    transform: translateY(7.5px) rotate(0);
   }
 
   100% {
@@ -33,7 +33,7 @@
   }
 
   50% {
-    transform: translateY(-10px) rotate(0);
+    transform: translateY(-7.5px) rotate(0);
   }
 
   100% {
