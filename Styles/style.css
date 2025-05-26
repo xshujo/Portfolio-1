@@ -15,7 +15,7 @@ body {
 
 header {
   width: 100%;
-  padding: 1rem;
+  padding: 16px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -45,8 +45,8 @@ header input {
 
 /* Header menu burger button */
 header label {
-  min-height: 38px;
-  padding: 10px 0;
+  min-height: 48px;
+  padding: 15px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -94,11 +94,11 @@ header input:checked+label span:nth-of-type(3) {
 header ul {
   width: 100%;
   background-color: white;
-  padding: 2rem 0;
+  padding: 32px 0;
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(2rem + clamp(1.5rem, 1.2000rem + 1.5000vw, 3rem));
+  top: calc(32px + clamp(24px, 19px + 1.5000vw, 48px));
   left: 0;
   clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
   transition: 0.5s ease;
@@ -110,7 +110,7 @@ header nav#header-menu input:checked~ul {
 
 header nav#header-menu ul li {
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
   transition: 0.5s ease;
   cursor: pointer;
   user-select: none;
@@ -127,15 +127,16 @@ main {
   width: 100%;
   height: 100%;
   /* background-color: gray; */
-  background-image: url("Images/temp.jpg");
+  background-image: url("../Images/temp.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 0 1rem;
+  padding: 32px 16px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+  align-content: flex-end;
   position: absolute;
   transition: 0.5s ease;
   z-index: -1;
@@ -146,7 +147,31 @@ header:has(input#header-menu-cb:checked)~main {
 }
 
 main section#main-project-info {
-  max-width: 250px;
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+main section#main-project-info h2 {
+  font-size: clamp(1.25rem, 1.0357rem + 1.0714vw, 2rem);
+}
+
+main section#main-project-info p {
+  font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+main section#main-project-info div#project-tags-ctn {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}
+
+main section#main-project-info div#project-tags-ctn span {
+  background-color: white;
+  font-size: clamp(0.75rem, 0.6786rem + 0.3571vw, 1rem);
+  padding: 2px 8px;
+  border-radius: 24px;
 }
 
 main section#main-nav-buttons {
