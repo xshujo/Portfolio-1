@@ -203,7 +203,7 @@ main section#main-nav-buttons button::before {
   border-radius: 50%;
   display: block;
   position: absolute;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
 }
 
 main section#main-nav-buttons button:hover::before {
@@ -222,7 +222,7 @@ main section#main-nav-buttons button span {
   background-color: white;
   display: block;
   border-radius: 2px;
-  transition: background 0.5s ease;
+  transition: background 0.3s ease;
 }
 
 main section#main-nav-buttons button:hover span {
