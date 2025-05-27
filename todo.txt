@@ -1,0 +1,2 @@
+- Animate slides
+- Change font colors for different slides (contrast)
