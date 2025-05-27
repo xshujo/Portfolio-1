@@ -25,6 +25,8 @@ const title = document.querySelector("#main-project-info h2");
 const desc = document.querySelector("#main-project-info p");
 const tagsContainer = document.querySelector("#project-tags-ctn");
 
+const dotsContainer = document.getElementById("nav-dots");
+
 function updateCarousel(index) {
   const project = projects[index];
   main.style.backgroundImage = `url(${project.background})`;
@@ -44,3 +46,26 @@ document.getElementById("prev-btn").addEventListener("click", () => {
 });
 
 updateCarousel(currentIndex);
+
+function renderDots() {
+  dotsContainer.innerHTML = projects.map((_, i) => `
+    <button class="nav-dot ${i === currentIndex ? 'active' : ''}" data-index="${i}"></button>
+  `).join("");
+
+  document.querySelectorAll(".nav-dot").forEach(dot => {
+    dot.addEventListener("click", (e) => {
+      currentIndex = parseInt(e.target.dataset.index);
+      updateCarousel(currentIndex);
+      renderDots();
+    });
+  });
+}
+
+function updateCarousel(index) {
+  const project = projects[index];
+  main.style.backgroundImage = `url(${project.background})`;
+  title.textContent = project.title;
+  desc.textContent = project.description;
+  tagsContainer.innerHTML = project.tags.map(tag => `<span>${tag}</span>`).join("");
+  renderDots();
+}
