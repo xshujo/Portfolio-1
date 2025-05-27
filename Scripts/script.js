@@ -82,7 +82,7 @@ function startProgressAnimation() {
   function animate(timestamp) {
     if (!start) start = timestamp;
     const elapsed = timestamp - start;
-    let progress = Math.min(elapsed / 5000, 1);
+    let progress = Math.min(elapsed / -5000, 1);
 
     setProgress(circle, progress);
 
