@@ -2,19 +2,19 @@ const projects = [{
     title: "Project One",
     description: "First project description",
     tags: ["HTML", "CSS", "JS"],
-    background: "Images/project1.png",
+    background: "Images/project1.webp",
   },
   {
     title: "Project Two",
     description: "Second project description",
     tags: ["React", "Node"],
-    background: "Images/project2.png",
+    background: "Images/project2.webp",
   },
   {
     title: "Project Three",
     description: "Third project description",
     tags: ["Figma", "UX"],
-    background: "Images/project3.png",
+    background: "Images/project3.webp",
   },
 ];
 
@@ -39,7 +39,8 @@ function renderDots() {
   dotsContainer.innerHTML = projects
     .map(
       (_, i) => `
-      <button class="nav-dot ${i === currentIndex ? "active" : ""}" data-index="${i}" style="position: relative;">
+      <button class="nav-dot ${i === currentIndex ? "active" : ""}" data-index="${i}" aria-label="Go to ${projects[i].title}" 
+  ${i === currentIndex ? 'aria-current="true"' : ''} style="position: relative;">
         ${
           i === currentIndex
             ? `<svg class="progress-ring" width="24" height="24" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); pointer-events:none;">
