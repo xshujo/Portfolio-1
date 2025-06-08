@@ -46,7 +46,7 @@ function renderDots() {
             ? `<svg class="progress-ring" width="24" height="24" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); pointer-events:none;">
                 <circle
                   class="progress-ring__circle"
-                  stroke="black"
+                  stroke="white"
                   stroke-width="2"
                   fill="transparent"
                   r="${radius}"
