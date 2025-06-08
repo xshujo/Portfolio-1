@@ -24,7 +24,7 @@ header {
   transition: background 0.5s ease;
 }
 
-header:has(input#header-menu-cb:checked) {
+header:has(input#header__menu-cb:checked) {
   background-color: white;
 }
 
@@ -33,7 +33,7 @@ header div#logo h1 {
   font-weight: 700;
 }
 
-header nav#header-menu {
+header nav#header__menu {
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -104,11 +104,11 @@ header ul {
   transition: 0.5s ease;
 }
 
-header nav#header-menu input:checked~ul {
+header nav#header__menu input:checked~ul {
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-header nav#header-menu ul li {
+header nav#header__menu ul li {
   width: 100%;
   padding: 8px 16px;
   transition: 0.5s ease;
@@ -116,8 +116,8 @@ header nav#header-menu ul li {
   user-select: none;
 }
 
-header nav#header-menu ul li:hover,
-header nav#header-menu ul li:active {
+header nav#header__menu ul li:hover,
+header nav#header__menu ul li:active {
   background-color: black;
   color: white;
 }
@@ -143,7 +143,7 @@ main {
   z-index: -1;
 }
 
-header:has(input#header-menu-cb:checked)~main {
+header:has(input#header__menu-cb:checked)~main {
   filter: brightness(50%);
 }
 
@@ -151,7 +151,7 @@ main::before {
   width: 100%;
   height: 250px;
   background: #000000;
-  background: linear-gradient(0deg, rgb(239, 224, 204) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(0deg, rgb(229, 216, 200) 0%, rgba(255, 255, 255, 0) 100%);
   content: "";
   display: block;
   position: absolute;
@@ -160,7 +160,23 @@ main::before {
   z-index: -1;
 }
 
-main section#main-project-info {
+.fade-slide-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 0.5s ease forwards;
+}
+
+main section#main__project-bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(229, 216, 200);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -5;
+}
+
+main section#main__project-info {
   width: 75%;
   max-width: 300px;
   height: 125px;
@@ -169,28 +185,28 @@ main section#main-project-info {
   gap: 10px;
 }
 
-main section#main-project-info h2 {
+main section#main__project-info h2 {
   font-size: clamp(1.25rem, 1.0357rem + 1.0714vw, 2rem);
 }
 
-main section#main-project-info p {
+main section#main__project-info p {
   font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
 
-main section#main-project-info div#project-tags-ctn {
+main section#main__project-info div#project-tags-ctn {
   display: flex;
   flex-flow: row wrap;
   gap: 8px;
 }
 
-main section#main-project-info div#project-tags-ctn span {
+main section#main__project-info div#project-tags-ctn span {
   background-color: white;
   font-size: clamp(0.75rem, 0.6786rem + 0.3571vw, 1rem);
   padding: 2px 8px;
   border-radius: 24px;
 }
 
-main section#main-nav-arrows {
+main section#main__nav-arrows {
   height: 125px;
   display: flex;
   flex-direction: column;
@@ -198,7 +214,7 @@ main section#main-nav-arrows {
   gap: 16px;
 }
 
-main section#main-nav-arrows button {
+main section#main__nav-arrows button {
   width: 40px;
   height: 40px;
   background-color: black;
@@ -211,7 +227,7 @@ main section#main-nav-arrows button {
   cursor: pointer;
 }
 
-main section#main-nav-arrows button::before {
+main section#main__nav-arrows button::before {
   width: 0px;
   height: 0px;
   background-color: white;
@@ -222,17 +238,17 @@ main section#main-nav-arrows button::before {
   transition: 0.3s ease;
 }
 
-main section#main-nav-arrows button:hover::before {
+main section#main__nav-arrows button:hover::before {
   width: 44px;
   height: 44px;
 }
 
-main section#main-nav-arrows button:first-of-type {
+main section#main__nav-arrows button:first-of-type {
   transform-origin: center;
   transform: rotate(180deg);
 }
 
-main section#main-nav-arrows button span {
+main section#main__nav-arrows button span {
   width: 10px;
   height: 2px;
   background-color: white;
@@ -241,27 +257,27 @@ main section#main-nav-arrows button span {
   transition: background 0.3s ease;
 }
 
-main section#main-nav-arrows button:hover span {
+main section#main__nav-arrows button:hover span {
   background-color: black;
 }
 
-main section#main-nav-arrows button span:first-of-type {
+main section#main__nav-arrows button span:first-of-type {
   transform-origin: center;
   transform: translateX(2px) rotate(45deg);
 }
 
-main section#main-nav-arrows button span:last-of-type {
+main section#main__nav-arrows button span:last-of-type {
   transform-origin: center;
   transform: translateX(-2px) rotate(-45deg);
 }
 
-main section#main-nav-progress {
+main section#main__nav-progress {
   width: 10px;
   position: absolute;
   right: 16px;
 }
 
-main section#main-nav-progress div#nav-dots {
+main section#main__nav-progress div#nav-dots {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -269,7 +285,7 @@ main section#main-nav-progress div#nav-dots {
   gap: 24px;
 }
 
-main section#main-nav-progress div#nav-dots button.nav-dot {
+main section#main__nav-progress div#nav-dots button.nav-dot {
   width: 8px;
   height: 8px;
   background-color: black;
@@ -283,15 +299,15 @@ main section#main-nav-progress div#nav-dots button.nav-dot {
   cursor: pointer;
 }
 
-main section#main-nav-progress div#nav-dots button.nav-dot:hover {
+main section#main__nav-progress div#nav-dots button.nav-dot:hover {
   background-color: white;
 }
 
-main section#main-nav-progress div#nav-dots button.nav-dot:not(.active):hover {
+main section#main__nav-progress div#nav-dots button.nav-dot:not(.active):hover {
   scale: 1.2;
 }
 
-main section#main-nav-progress div#nav-dots button.nav-dot::before {
+main section#main__nav-progress div#nav-dots button.nav-dot::before {
   content: "";
   position: absolute;
   top: -8px;

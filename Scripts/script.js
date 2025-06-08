@@ -20,8 +20,8 @@ const projects = [{
 
 let currentIndex = 0;
 const main = document.querySelector("main");
-const title = document.querySelector("#main-project-info h2");
-const desc = document.querySelector("#main-project-info p");
+const title = document.querySelector("#main__project-info h2");
+const desc = document.querySelector("#main__project-info p");
 const tagsContainer = document.querySelector("#project-tags-ctn");
 const dotsContainer = document.getElementById("nav-dots");
 
@@ -106,6 +106,14 @@ function updateCarousel(index) {
   title.textContent = project.title;
   desc.textContent = project.description;
   tagsContainer.innerHTML = project.tags.map((tag) => `<span>${tag}</span>`).join("");
+
+  // Trigger animation
+  [title, desc, tagsContainer].forEach((el) => {
+    el.classList.remove("fade-slide-in"); // Reset in case it’s still there
+    void el.offsetWidth; // Force reflow to restart animation
+    el.classList.add("fade-slide-in");
+  });
+
   renderDots();
   startProgressAnimation();
 }
