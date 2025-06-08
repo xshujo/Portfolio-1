@@ -102,15 +102,31 @@ function startProgressAnimation() {
 
 function updateCarousel(index) {
   const project = projects[index];
-  main.style.backgroundImage = `url(${project.background})`;
+  const img = document.querySelector("#main__project-bg img");
+
+  // Preload new image first
+  const preload = new Image();
+  preload.src = project.background;
+
+  preload.onload = () => {
+    // Once loaded, update the actual img src and animate fade-in
+    img.classList.remove("img-fade-in");
+    void img.offsetWidth;
+    img.src = preload.src;
+    img.alt = project.title;
+    img.classList.add("img-fade-in");
+  };
+
+  // Update text
   title.textContent = project.title;
   desc.textContent = project.description;
   tagsContainer.innerHTML = project.tags.map((tag) => `<span>${tag}</span>`).join("");
 
-  // Trigger animation
-  [title, desc, tagsContainer].forEach((el) => {
-    el.classList.remove("fade-slide-in"); // Reset in case it’s still there
-    void el.offsetWidth; // Force reflow to restart animation
+  // Animate text with staggered delays
+  [title, desc, tagsContainer].forEach((el, i) => {
+    el.classList.remove("fade-slide-in");
+    void el.offsetWidth;
+    el.style.animationDelay = `${0.3 + i * 0.1}s`;
     el.classList.add("fade-slide-in");
   });
 

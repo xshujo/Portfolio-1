@@ -55,6 +55,18 @@
   }
 }
 
+/* Animate project image */
+@keyframes projectImageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animate project info */
 @keyframes projectInfoSlideIn {
   to {
     opacity: 1;
