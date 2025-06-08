@@ -244,6 +244,10 @@ main section#main__project-info div#project-tags-ctn span {
   animation: projectInfoSlideIn 0.5s ease forwards;
 }
 
+.fade-slide-out {
+  animation: projectInfoSlideOut 0.5s ease forwards;
+}
+
 /* Main - Arrow navigation */
 main section#main__nav-arrows {
   height: 125px;
