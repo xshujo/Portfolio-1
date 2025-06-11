@@ -44,6 +44,10 @@ header:has(input:checked) div#logo h1 {
   text-shadow: none;
 }
 
+header div#logo h1 a {
+  all: unset;
+}
+
 /*** Header - Menu ***/
 header nav#header__menu {
   display: flex;
@@ -140,6 +144,10 @@ header nav#header__menu ul li:hover,
 header nav#header__menu ul li:active {
   background-color: black;
   color: white;
+}
+
+header nav#header__menu ul li a {
+  all: unset;
 }
 
 /***************************************** MAIN *****************************************/

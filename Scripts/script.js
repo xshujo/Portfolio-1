@@ -19,16 +19,17 @@ const projects = [{
 ];
 
 let currentIndex = 0;
-const main = document.querySelector("main");
+let firstLoad = true;
+let animationFrameId;
+
 const title = document.querySelector("#main__project-info h2");
 const desc = document.querySelector("#main__project-info p");
 const tagsContainer = document.querySelector("#project-tags-ctn");
 const dotsContainer = document.getElementById("nav-dots");
+const img = document.querySelector("#main__project-bg img");
 
 const radius = 8;
 const circumference = 2 * Math.PI * radius;
-
-let animationFrameId;
 
 function setProgress(circle, progress) {
   const offset = circumference * progress;
@@ -40,7 +41,7 @@ function renderDots() {
     .map(
       (_, i) => `
       <button class="nav-dot ${i === currentIndex ? "active" : ""}" data-index="${i}" aria-label="Go to ${projects[i].title}" 
-  ${i === currentIndex ? 'aria-current="true"' : ''} style="position: relative;">
+        ${i === currentIndex ? 'aria-current="true"' : ''} style="position: relative;">
         ${
           i === currentIndex
             ? `<svg class="progress-ring" width="24" height="24" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); pointer-events:none;">
@@ -83,16 +84,14 @@ function startProgressAnimation() {
   function animate(timestamp) {
     if (!start) start = timestamp;
     const elapsed = timestamp - start;
-    let progress = Math.min(elapsed / -5000, 1);
+    let progress = Math.min(elapsed / 5000, 1); // 5 seconds per slide
 
     setProgress(circle, progress);
 
     if (elapsed < 5000) {
       animationFrameId = requestAnimationFrame(animate);
     } else {
-      setTimeout(() => {
-        nextSlide();
-      }, 500);
+      setTimeout(() => nextSlide(), 300);
     }
   }
 
@@ -102,22 +101,24 @@ function startProgressAnimation() {
 
 function updateCarousel(index) {
   const project = projects[index];
-  const img = document.querySelector("#main__project-bg img");
 
-  // Animate project info out
-  [title, desc, tagsContainer].forEach((el) => {
-    el.classList.remove("fade-slide-in");
-    el.classList.add("fade-slide-out");
-  });
+  if (!firstLoad) {
+    // Animate text out only after first load
+    [title, desc, tagsContainer].forEach((el) => {
+      el.classList.remove("fade-slide-in");
+      el.classList.add("fade-slide-out");
+    });
+  }
 
   setTimeout(() => {
-    // Remove slide-out classes
-    [title, desc, tagsContainer].forEach((el) => {
-      el.classList.remove("fade-slide-out");
-      void el.offsetWidth; // force reflow
-    });
+    if (!firstLoad) {
+      [title, desc, tagsContainer].forEach((el) => {
+        el.classList.remove("fade-slide-out");
+        void el.offsetWidth;
+      });
+    }
 
-    // Preload and update image
+    // Preload image
     const preload = new Image();
     preload.src = project.background;
 
@@ -129,12 +130,12 @@ function updateCarousel(index) {
       img.classList.add("img-fade-in");
     };
 
-    // Update project info text
+    // Update text content
     title.textContent = project.title;
     desc.textContent = project.description;
     tagsContainer.innerHTML = project.tags.map((tag) => `<span>${tag}</span>`).join("");
 
-    // Animate project info in
+    // Animate text in
     [title, desc, tagsContainer].forEach((el, i) => {
       el.style.animationDelay = `${0.3 + i * 0.1}s`;
       el.classList.add("fade-slide-in");
@@ -142,7 +143,9 @@ function updateCarousel(index) {
 
     renderDots();
     startProgressAnimation();
-  }, 800);
+
+    firstLoad = false;
+  }, firstLoad ? 0 : 800);
 }
 
 function nextSlide() {
@@ -155,12 +158,9 @@ function prevSlide() {
   updateCarousel(currentIndex);
 }
 
-document.getElementById("next-btn").addEventListener("click", () => {
-  nextSlide();
-});
+// Event listeners
+document.getElementById("next-btn").addEventListener("click", nextSlide);
+document.getElementById("prev-btn").addEventListener("click", prevSlide);
 
-document.getElementById("prev-btn").addEventListener("click", () => {
-  prevSlide();
-});
-
+// Initialize carousel
 updateCarousel(currentIndex);
