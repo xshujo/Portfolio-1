@@ -35,6 +35,8 @@ header div#logo h1 {
   color: white;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   transition: 0.5s ease;
+  cursor: pointer;
+  user-select: none;
 }
 
 header:has(input:checked) div#logo h1 {
@@ -108,7 +110,7 @@ header input:checked+label span:nth-of-type(3) {
 }
 
 /* Header - Menu navigation list */
-header ul {
+header nav#header__menu ul {
   width: 100%;
   background-color: white;
   padding: 32px 0;
@@ -127,6 +129,7 @@ header nav#header__menu input:checked~ul {
 
 header nav#header__menu ul li {
   width: 100%;
+  font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
   padding: 8px 16px;
   transition: 0.5s ease;
   cursor: pointer;
@@ -214,6 +217,7 @@ main section#main__project-info {
   height: 125px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -253,6 +257,7 @@ main section#main__nav-arrows {
   height: 125px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 16px;
 }
@@ -369,4 +374,60 @@ main section#main__nav-progress div#nav-dots button.nav-dot::before {
 .progress-ring__circle {
   transition: stroke-dashoffset 0.1s linear;
   transform-origin: 50% 50%;
+}
+
+@media (min-width:796px) {
+  header nav#header__menu label {
+    display: none;
+  }
+
+  header nav#header__menu ul {
+    background-color: transparent;
+    padding: 0;
+    flex-direction: row;
+    gap: 40px;
+    position: relative;
+    top: 0;
+    left: initial;
+    clip-path: none;
+  }
+
+  header nav#header__menu ul li {
+    color: white;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    padding: 8px 0;
+    display: flex;
+    position: relative;
+  }
+
+  header nav#header__menu ul li::before {
+    width: 0;
+    height: 1.5px;
+    background-color: white;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    transition: 0.3s ease-in-out;
+  }
+
+  header nav#header__menu ul li:hover {
+    background-color: transparent;
+    color: black;
+    text-shadow: none;
+  }
+
+  header nav#header__menu ul li:hover::before {
+    width: 100%;
+    background-color: black;
+    border-radius: 0;
+  }
+
+  main section#main__project-info {
+    max-width: 450px;
+    height: 150px;
+  }
+
+  main section#main__nav-arrows {
+    gap: 32px;
+  }
 }

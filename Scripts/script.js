@@ -127,8 +127,6 @@ function updateCarousel(index) {
       img.src = preload.src;
       img.alt = project.title;
       img.classList.add("img-fade-in");
-
-      updateHeaderColorBasedOnImage(preload);
     };
 
     // Update project info text
