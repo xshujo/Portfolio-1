@@ -1,3 +1,4 @@
+/************************************ GENERAL STYLES ************************************/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,6 +12,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+p,
+li {
+  font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
 
 /**************************************** HEADER ****************************************/

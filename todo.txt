@@ -1,2 +1,6 @@
 - Langagues
 - Other pages
+
+- Menu list height: 100% when at top of the page, 50% when page scrolled
+
+Switch to one-pager...
